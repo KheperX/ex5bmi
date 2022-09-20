@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+  <head>
+  <title>Body Mass Index (BMI) Calculator</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</head>
+  <body>
+    <div class="container-fluid">
+		<h1>Body Mass Index (BMI) Calculator</h1>
+		<form role="form" method="GET">
+		  <div class="form-group">
+			<label for="tem">Weight(kg):</label>
+			<input type="text" class="form-control" name="w" id="w" >
+		  </div>
+		  <div class="form-group">
+			<label for="tem">Height(cm):</label>
+			<input type="text" class="form-control" name="h" id="h">
+		  </div>
+		  <button type="button" class="btn btn-primary">Calculate</button>
+		</form>
+	</div>
+	<div id="result" align="center" style="margin-top:50px;margin-left:10px; font-size: 20px; color:red;">
+	</div>
+    <p align="center" style="margin-top:50px;margin-left:10px;"><i><b>Reference:</b> World Health Organization (WHO) - http://www.euro.who.int/en/health-topics/disease-prevention/nutrition/a-healthy-lifestyle/body-mass-index-bmi</i></p>
+
+	<script>
+		$(document).ready(function(){
+			$("button").click(function(){
+				var w = $("#w").val();
+				var h = $("#h").val();
+				$.get("http://localhost:3000/bmi/bmi/"+w+"/"+h,
+				function(data,status){
+					$("#result").html("<br>BMI -> "+data.bmi);
+
+				});
+
+			});
+		});
+
+	</script>
+</body>
+</html>
